@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
+  <title>MMX Logo in HTML</title>
+</head>
+<body>
+  <input id="size" value="200"></input>
+  <div id="main"></div>
+  <script src="target/logo.js"></script>
+  <script>
+  $('#main').html(logo(200));
+  $('#size').keyup(function() {
+    var size = parseInt($('#size').val());
+    console.log(size);
+    $('#main').html(logo(size));
+  });
+  </script>
+</body>
+</html>

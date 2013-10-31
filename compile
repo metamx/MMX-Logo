@@ -1,0 +1,2 @@
+#!/bin/bash
+coffee --compile --bare --output target src/*
