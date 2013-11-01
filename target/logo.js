@@ -2,7 +2,7 @@
 var logo;
 
 logo = function(size) {
-  var gap, html, spacing, thickness;
+  var gap, html, spacing, td, thickness;
 
   size = Math.max(Math.floor(size), 7);
   thickness = Math.max(Math.ceil(size / 8), 1);
@@ -12,7 +12,194 @@ logo = function(size) {
     thickness -= 1;
     gap = size - 2 * (thickness + spacing + thickness);
   }
-  html = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:collapse; table-layout:fixed; width:" + size + "px; height:" + size + "px;\">\n  <tr style=\"height:" + thickness + "px\">\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + gap + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n  </tr>\n  <tr style=\"height:" + spacing + "px\">\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n    <td style=\"padding:0; width:" + gap + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n  </tr>\n  <tr style=\"height:" + thickness + "px\">\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + gap + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#14213E\"></td>\n    <td style=\"padding:0; width:" + spacing + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n  </tr>\n  <tr style=\"height:" + gap + "px\">\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + gap + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n  </tr>\n  <tr style=\"height:" + thickness + "px\">\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#14213E\"></td>\n    <td style=\"padding:0; width:" + gap + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#52B6E0\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n  </tr>\n  <tr style=\"height:" + spacing + "px\">\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + gap + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n  </tr>\n  <tr style=\"height:" + thickness + "px\">\n    <td style=\"padding:0; width:" + thickness + "px;\"></td>\n    <td style=\"padding:0; width:" + spacing + "px;\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + gap + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + spacing + "px; background:#F95F39\"></td>\n    <td style=\"padding:0; width:" + thickness + "px; background:#F95F39\"></td>\n  </tr>\n</table>";
+  td = function(_arg) {
+    var color, height, width;
+
+    width = _arg.width, height = _arg.height, color = _arg.color;
+    if (color) {
+      return "<td width=" + width + " bgcolor=\"" + color + "\" style=\"padding:0;font-size:" + height + "px;line-height:" + height + "px;\">&nbsp;</td>";
+    } else {
+      return "<td width=" + width + " style=\"padding:0;font-size:" + height + "px;line-height:" + height + "px;\">&nbsp;</td>";
+    }
+  };
+  html = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"border-collapse:collapse;\">\n  <tr height=" + thickness + ">\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: gap,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness
+  })) + "\n  </tr>\n  <tr height=" + spacing + ">\n    " + (td({
+    width: thickness,
+    height: spacing,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing
+  })) + "\n    " + (td({
+    width: gap,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing
+  })) + "\n  </tr>\n  <tr height=" + thickness + ">\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: gap,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#14213E"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n  </tr>\n  <tr height=" + gap + ">\n    " + (td({
+    width: thickness,
+    height: gap,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: gap
+  })) + "\n    " + (td({
+    width: thickness,
+    height: gap,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: gap,
+    height: gap
+  })) + "\n    " + (td({
+    width: thickness,
+    height: gap,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: gap
+  })) + "\n    " + (td({
+    width: thickness,
+    height: gap,
+    color: "#F95F39"
+  })) + "\n  </tr>\n  <tr height=" + thickness + ">\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#14213E"
+  })) + "\n    " + (td({
+    width: gap,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#52B6E0"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n  </tr>\n  <tr height=" + spacing + ">\n    " + (td({
+    width: thickness,
+    height: spacing
+  })) + "\n    " + (td({
+    width: spacing,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: gap,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing
+  })) + "\n    " + (td({
+    width: spacing,
+    height: spacing
+  })) + "\n    " + (td({
+    width: thickness,
+    height: spacing,
+    color: "#F95F39"
+  })) + "\n  </tr>\n  <tr height=" + thickness + ">\n    " + (td({
+    width: thickness,
+    height: thickness
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: gap,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: spacing,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n    " + (td({
+    width: thickness,
+    height: thickness,
+    color: "#F95F39"
+  })) + "\n  </tr>\n</table>";
   html = html.replace(/>\s+</g, '><');
   return html;
 };

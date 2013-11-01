@@ -6,70 +6,77 @@ logo = (size) ->
   if gap < 1 and thickness > 1
     thickness -= 1 # Correct for tiny sizes
     gap = size - 2 * (thickness + spacing + thickness)
+
+  td = ({width, height, color}) ->
+    if color
+      return """<td width=#{width} bgcolor="#{color}" style="padding:0;font-size:#{height}px;line-height:#{height}px;">&nbsp;</td>"""
+    else
+      return """<td width=#{width} style="padding:0;font-size:#{height}px;line-height:#{height}px;">&nbsp;</td>"""
+
   html = """
-    <table cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; table-layout:fixed; width:#{size}px; height:#{size}px;">
-      <tr style="height:#{thickness}px">
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{gap}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px;"></td>
+    <table cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
+      <tr height=#{thickness}>
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:spacing, height:thickness, color: "#52B6E0"})}
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:gap, height:thickness, color: "#52B6E0"})}
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:spacing, height:thickness})}
+        #{td({width:thickness, height:thickness})}
       </tr>
-      <tr style="height:#{spacing}px">
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px;"></td>
-        <td style="padding:0; width:#{gap}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px;"></td>
+      <tr height=#{spacing}>
+        #{td({width:thickness, height:spacing, color: "#52B6E0"})}
+        #{td({width:spacing, height:spacing})}
+        #{td({width:thickness, height:spacing})}
+        #{td({width:gap, height:spacing})}
+        #{td({width:thickness, height:spacing, color: "#52B6E0"})}
+        #{td({width:spacing, height:spacing})}
+        #{td({width:thickness, height:spacing})}
       </tr>
-      <tr style="height:#{thickness}px">
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{gap}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{thickness}px; background:#14213E"></td>
-        <td style="padding:0; width:#{spacing}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
+      <tr height=#{thickness}>
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:spacing, height:thickness})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
+        #{td({width:gap, height:thickness, color: "#F95F39"})}
+        #{td({width:thickness, height:thickness, color: "#14213E"})}
+        #{td({width:spacing, height:thickness, color: "#F95F39"})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
       </tr>
-      <tr style="height:#{gap}px">
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{gap}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
+      <tr height=#{gap}>
+        #{td({width:thickness, height:gap, color: "#52B6E0"})}
+        #{td({width:spacing, height:gap})}
+        #{td({width:thickness, height:gap, color: "#F95F39"})}
+        #{td({width:gap, height:gap})}
+        #{td({width:thickness, height:gap, color: "#52B6E0"})}
+        #{td({width:spacing, height:gap})}
+        #{td({width:thickness, height:gap, color: "#F95F39"})}
       </tr>
-      <tr style="height:#{thickness}px">
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{thickness}px; background:#14213E"></td>
-        <td style="padding:0; width:#{gap}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{thickness}px; background:#52B6E0"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
+      <tr height=#{thickness}>
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:spacing, height:thickness, color: "#52B6E0"})}
+        #{td({width:thickness, height:thickness, color: "#14213E"})}
+        #{td({width:gap, height:thickness, color: "#52B6E0"})}
+        #{td({width:thickness, height:thickness, color: "#52B6E0"})}
+        #{td({width:spacing, height:thickness})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
       </tr>
-      <tr style="height:#{spacing}px">
-        <td style="padding:0; width:#{thickness}px;"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{gap}px;"></td>
-        <td style="padding:0; width:#{thickness}px;"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
+      <tr height=#{spacing}>
+        #{td({width:thickness, height:spacing})}
+        #{td({width:spacing, height:spacing})}
+        #{td({width:thickness, height:spacing, color: "#F95F39"})}
+        #{td({width:gap, height:spacing})}
+        #{td({width:thickness, height:spacing})}
+        #{td({width:spacing, height:spacing})}
+        #{td({width:thickness, height:spacing, color: "#F95F39"})}
       </tr>
-      <tr style="height:#{thickness}px">
-        <td style="padding:0; width:#{thickness}px;"></td>
-        <td style="padding:0; width:#{spacing}px;"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{gap}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{spacing}px; background:#F95F39"></td>
-        <td style="padding:0; width:#{thickness}px; background:#F95F39"></td>
+      <tr height=#{thickness}>
+        #{td({width:thickness, height:thickness})}
+        #{td({width:spacing, height:thickness})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
+        #{td({width:gap, height:thickness, color: "#F95F39"})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
+        #{td({width:spacing, height:thickness, color: "#F95F39"})}
+        #{td({width:thickness, height:thickness, color: "#F95F39"})}
       </tr>
     </table>
     """
