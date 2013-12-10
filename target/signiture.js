@@ -12,28 +12,28 @@ mesureWidth = function(str, style) {
 };
 
 signiture = function(_arg) {
-  var email, emailWidth, height, infoWidth, line1Width, line2Width, line3Width, line4Width, lineHeight, logoSpacer, metamarketsWidth, mmx, name, nameWidth, phone1, phone1Width, phone2, phone2Width, phoneTagWidth, position, positionWidth, signitureStr, spacerExtra, spacerWidth, table, tableAndRow, td, tdSpecer, tr;
+  var email, emailWidth, field1, field1Label, field1Width, field2, field2Label, field2Width, fieldTagWidth, height, infoWidth, line1Width, line2Width, line3Width, line4Width, lineHeight, logoSpacer, metamarketsWidth, mmx, name, nameWidth, position, positionWidth, signitureStr, spacerExtra, spacerWidth, table, tableAndRow, td, tdSpecer, tr;
 
-  name = _arg.name, position = _arg.position, phone1 = _arg.phone1, phone2 = _arg.phone2, email = _arg.email;
+  name = _arg.name, position = _arg.position, field1Label = _arg.field1Label, field1 = _arg.field1, field2Label = _arg.field2Label, field2 = _arg.field2, email = _arg.email;
   if (!/^[\w' -]+$/.test(name)) {
     return "Invalid name";
   }
   height = 52;
   logoSpacer = 6;
   lineHeight = 13;
-  phoneTagWidth = 13;
+  fieldTagWidth = 13;
   spacerWidth = 3;
   spacerExtra = 5;
   mmx = 'METAMARKETS';
   nameWidth = mesureWidth(name, 'font-size:11px; font-weight:bold;   font-family:Helvetica,Arial,Sans-Serif') + 5;
   positionWidth = mesureWidth(position, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif');
   metamarketsWidth = mesureWidth(mmx, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif');
-  phone1Width = mesureWidth(phone1, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 2;
-  phone2Width = mesureWidth(phone2, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 2;
+  field1Width = mesureWidth(field1, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 2;
+  field2Width = mesureWidth(field2, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 2;
   emailWidth = mesureWidth(email, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 5;
   line1Width = nameWidth;
   line2Width = positionWidth + spacerExtra + spacerWidth + spacerExtra + metamarketsWidth;
-  line3Width = phoneTagWidth + phone1Width + spacerExtra + spacerWidth + spacerExtra + phoneTagWidth + phone2Width;
+  line3Width = fieldTagWidth + field1Width + spacerExtra + spacerWidth + spacerExtra + fieldTagWidth + field2Width;
   line4Width = emailWidth;
   infoWidth = Math.max(line1Width, line2Width, line3Width, line4Width);
   table = function(_arg1) {
@@ -112,19 +112,19 @@ signiture = function(_arg) {
         height: lineHeight,
         style: 'font-size:11px;font-family:Helvetica,Arial,Sans-Serif;white-space:nowrap',
         html: td({
-          width: phoneTagWidth,
-          html: 'm',
+          width: fieldTagWidth,
+          html: field1Label,
           style: 'color:#000000;font-weight:bold;'
         }) + td({
-          width: phone1Width + spacerExtra,
-          html: "<a style=\"color:#3e2105; text-decoration:none\" href=\"tel:" + phone1 + "\">" + phone1 + "</a>"
+          width: field1Width + spacerExtra,
+          html: "<a style=\"color:#3e2105; text-decoration:none\" href=\"tel:" + field1 + "\">" + field1 + "</a>"
         }) + tdSpecer + td({
-          width: phoneTagWidth,
-          html: 'o',
+          width: fieldTagWidth,
+          html: field2Label,
           style: 'color:#000000;font-weight:bold;'
         }) + td({
-          width: phone2Width + spacerExtra,
-          html: "<a style=\"color:#3e2105; text-decoration:none\" href=\"tel:" + phone2 + "\">" + phone2 + "</a>"
+          width: field2Width + spacerExtra,
+          html: "<a style=\"color:#3e2105; text-decoration:none\" href=\"tel:" + field2 + "\">" + field2 + "</a>"
         })
       }) + tableAndRow({
         width: line4Width,
