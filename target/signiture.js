@@ -83,7 +83,7 @@ signiture = function(_arg) {
       html: "<a href=\"http://www.metamarkets.com\" target=\"_blank\">" + (logo(height)) + "</a>"
     }) + td({
       width: logoSpacer,
-      html: ''
+      html: '&nbsp;'
     }) + td({
       width: infoWidth,
       html: tableAndRow({

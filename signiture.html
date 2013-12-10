@@ -9,27 +9,27 @@
   <table>
     <tr>
       <td><label for="name">Name</label></td>
-      <td><input id="name" value="Larry Hertog"></input></td>
+      <td><input id="name"></input></td>
       <td></td>
     </tr>
     <tr>
       <td><label for="position">Position</label></td>
-      <td><input id="position" value="Director of Computation"></input></td>
+      <td><input id="position"></input></td>
       <td></td>
     </tr>
     <tr>
       <td><label for="phone1">Phone 1</label></td>
-      <td><input id="phone1" value="415.555.1234"></input></td>
+      <td><input id="phone1"></input></td>
       <td></td>
     </tr>
     <tr>
       <td><label for="phone2">Phone 2</label></td>
-      <td><input id="phone2" value="415.555.5678"></input></td>
+      <td><input id="phone2"></input></td>
       <td>* optional</td>
     </tr>
     <tr>
       <td><label for="email">Email</label></td>
-      <td><input id="email" value="larry.hertog@metamarkets.com"></input></td>
+      <td><input id="email"></input></td>
       <td></td>
     </tr>
   </table>
@@ -38,13 +38,29 @@
   <script src="target/signiture.js"></script>
   <script>
 
+  // Init
+  $('#name').val(localStorage['name'] || 'Larry Hertog');
+  $('#position').val(localStorage['position'] || 'Director of Somwthing');
+  $('#phone1').val(localStorage['phone1'] || '415.555.1234');
+  $('#phone2').val(localStorage['phone2'] || '415.555.5678');
+  $('#email').val(localStorage['email'] || 'larry.hertog');
+
+  function save() {
+    localStorage['name'] = $('#name').val();
+    localStorage['position'] = $('#position').val();
+    localStorage['phone1'] = $('#phone1').val();
+    localStorage['phone2'] = $('#phone2').val();
+    localStorage['email'] = $('#email').val();
+  }
+
   function render() {
+    save();
     $('#main').html(signiture({
       name: $('#name').val(),
       position: $('#position').val(),
       phone1: $('#phone1').val(),
       phone2: $('#phone2').val(),
-      email: $('#email').val()
+      email: $('#email').val() + '@metamarkets.com'
     }));
   }
 

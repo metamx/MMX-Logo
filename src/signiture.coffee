@@ -77,7 +77,7 @@ signiture = ({name, position, phone1, phone2, email}) ->
         }) +
         td({
           width: logoSpacer
-          html: ''
+          html: '&nbsp;'
         }) +
         td({
           width: infoWidth

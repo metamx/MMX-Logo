@@ -9,9 +9,9 @@ logo = (size) ->
 
   td = ({width, height, color}) ->
     if color
-      return """<td width=#{width} bgcolor="#{color}" style="padding:0;font-size:#{height}px;line-height:#{height}px;">&nbsp;</td>"""
+      return """<td width=#{width} bgcolor="#{color}" style="padding:0;font-size:1px;line-height:1px;">&nbsp;</td>"""
     else
-      return """<td width=#{width} style="padding:0;font-size:#{height}px;line-height:#{height}px;">&nbsp;</td>"""
+      return """<td width=#{width} style="padding:0;font-size:1px;line-height:1px;">&nbsp;</td>"""
 
   html = """
     <table cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
