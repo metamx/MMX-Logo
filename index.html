@@ -4,30 +4,62 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
   <title>MMX Signature in HTML</title>
+  <style>
+  .form {
+    font-family :Helvetica,Arial,Sans-Serif;
+  }
+
+  .copy {
+    margin-top: 1em;
+  }
+
+  #main {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  </style>
 </head>
 <body>
-  <table style="font-family:Helvetica,Arial,Sans-Serif;">
-    <tr>
-      <td><label for="name">Name</label></td>
-      <td><input id="name" size="21"></input></td>
-    </tr>
-    <tr>
-      <td><label for="position">Position</label></td>
-      <td><input id="position" size="21"></input></td>
-    </tr>
-    <tr>
-      <td><label for="field1">Field 1</label></td>
-      <td><input id="field1Label" maxlength="1" size="2"></input><input id="field1" size="20"></input></td>
-    </tr>
-    <tr>
-      <td><label for="field2">Field 2</label></td>
-      <td><input id="field2Label" maxlength="1"  size="2"></input><input id="field2" size="20"></input></td>
-    </tr>
-    <tr>
-      <td><label for="email">Email</label></td>
-      <td><input id="email" size="21"></input>@metamarkets.com</td>
-    </tr>
-  </table>
+  <div class="form">
+    <table>
+      <tr>
+        <td><label for="name">Name</label></td>
+        <td><input id="name" size="21"></input></td>
+      </tr>
+      <tr>
+        <td><label for="position">Position</label></td>
+        <td><input id="position" size="21"></input></td>
+      </tr>
+      <tr>
+        <td><label for="field1">Phone</label></td>
+        <td>
+          <select id="field1Label">
+            <option value="m">Mobile / Main</option>
+            <option value="o">Office</option>
+          </select>
+          <input id="field1" size="20"></input></td>
+      </tr>
+      <tr>
+        <td><label for="field2">Field 2</label></td>
+        <td>
+          <select id="field2Label">
+            <option value="-">None</option>
+            <option value="m">Mobile / Main</option>
+            <option value="o">Office</option>
+            <option value="t">Twitter</option>
+          </select>
+          <input id="field2" size="20"></input>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="email">Email</label></td>
+        <td><input id="email" size="21"></input>@metamarkets.com</td>
+      </tr>
+    </table>
+    <div class="copy">Copy here:</div>
+  </div>
   <div id="main"></div>
   <script src="target/logo.js"></script>
   <script src="target/signiture.js"></script>
@@ -42,22 +74,33 @@
   $('#field2').val(localStorage['field2'] || '@medriscoll');
   $('#email').val(localStorage['email'] || 'mike');
 
-  function formatField(str) {
-    if (str[0] === '@') return str;
+  function formatPhone(str) {
     str = str.replace(/\D/g, '');
     str += '0000000000';
     str = str.substring(0, 10);
     return str.substring(0, 3) + '.' + str.substring(3, 6) + '.' + str.substring(6, 10);
   }
 
+  function formatTwitter(str) {
+    if (str[0] === '@') return str;
+    return '@twitter';
+  }
+
   function render() {
     var name = $('#name').val().substring(0, 20);
     var position = $('#position').val().substring(0, 20);
-    var field1Label = $('#field1Label').val().substring(0, 1).toLowerCase();
-    var field1 = formatField($('#field1').val().substring(0, 20));
-    var field2Label = $('#field2Label').val().substring(0, 1).toLowerCase();
-    var field2 = formatField($('#field2').val().substring(0, 20));
+    var field1Label = ($('#field1Label').val() || 'm').substring(0, 1).toLowerCase();
+    var field1 = formatPhone($('#field1').val().substring(0, 20));
+    var field2Label = ($('#field2Label').val() || '-').substring(0, 1).toLowerCase();
+    var field2 = $('#field2').val().substring(0, 20);
     var email = $('#email').val().substring(0, 20);
+
+    if (field2Label == 'n')
+      field2 = ''
+    else if (field2Label == 't')
+      field2 = formatTwitter(field2)
+    else
+      field2 = formatPhone(field2)
 
     localStorage['name'] = name
     localStorage['position'] = position
@@ -80,7 +123,9 @@
 
   $('#name').keyup(render);
   $('#position').keyup(render);
+  $('#field1Label').change(render);
   $('#field1').keyup(render);
+  $('#field2Label').change(render);
   $('#field2').keyup(render);
   $('#email').keyup(render);
 

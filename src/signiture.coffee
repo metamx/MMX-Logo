@@ -5,6 +5,8 @@ mesureWidth = (str, style) ->
   element.remove()
   return width
 
+makeLink = (str) ->
+  return if str[0] is '@' then "https://twitter.com/#{str.substring(1)}" else "tel:#{str}"
 
 signiture = ({name, position, field1Label, field1, field2Label, field2, email}) ->
   return "Invalid name" unless /^[\w' -]+$/.test(name)
@@ -24,9 +26,11 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
   field2Width = mesureWidth(field2,     'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 2
   emailWidth = mesureWidth(email,       'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif') + 5
 
+  hasField2 = field2Label isnt '-' and field2 isnt ''
+
   line1Width = nameWidth
   line2Width = positionWidth + spacerExtra + spacerWidth + spacerExtra + metamarketsWidth
-  line3Width = fieldTagWidth + field1Width + spacerExtra + spacerWidth + spacerExtra + fieldTagWidth + field2Width
+  line3Width = fieldTagWidth + field1Width + spacerExtra + (if hasField2 then spacerWidth + spacerExtra + fieldTagWidth + field2Width else 0)
   line4Width = emailWidth
 
   infoWidth = Math.max(line1Width, line2Width, line3Width, line4Width)
@@ -106,7 +110,7 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
                 tdSpecer +
                 td({
                   width: metamarketsWidth
-                  html: """<a style="color:#999999; text-decoration:none" href="http://www.metamarkets.com">#{mmx}</a>"""
+                  html: """<a style="color:#666666; text-decoration:none" href="http://www.metamarkets.com">#{mmx}</a>"""
                 })
             }) +
             tableAndRow({
@@ -117,22 +121,26 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
                 td({
                   width: fieldTagWidth
                   html: field1Label
-                  style: 'color:#000000;font-weight:bold;'
+                  style: 'color:#666666;font-weight:bold;'
                 }) +
                 td({
                   width: field1Width + spacerExtra
-                  html: """<a style="color:#3e2105; text-decoration:none" href="tel:#{field1}">#{field1}</a>"""
+                  html: """<a style="color:#666666; text-decoration:none" href="#{makeLink(field1)}">#{field1}</a>"""
                 }) +
-                tdSpecer +
-                td({
-                  width: fieldTagWidth
-                  html: field2Label
-                  style: 'color:#000000;font-weight:bold;'
-                }) +
-                td({
-                  width: field2Width + spacerExtra
-                  html: """<a style="color:#3e2105; text-decoration:none" href="tel:#{field2}">#{field2}</a>"""
-                })
+                (if hasField2
+                  tdSpecer +
+                  td({
+                    width: fieldTagWidth
+                    html: field2Label
+                    style: 'color:#666666;font-weight:bold;'
+                  }) +
+                  td({
+                    width: field2Width + spacerExtra
+                    html: """<a style="color:#666666; text-decoration:none" href="#{makeLink(field2)}">#{field2}</a>"""
+                  })
+                else
+                  ''
+                )
             }) +
             tableAndRow({
               width: line4Width
