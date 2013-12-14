@@ -7,6 +7,20 @@
   <style>
   .form {
     font-family :Helvetica,Arial,Sans-Serif;
+    width: 600px;
+  }
+
+  h1 {
+    margin-bottom: 1em;
+  }
+
+  strong {
+    color: red;
+  }
+
+  .warning {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .copy {
@@ -18,11 +32,17 @@
     border-bottom: 1px solid black;
     padding-top: 8px;
     padding-bottom: 8px;
+    width: 600px;
   }
   </style>
 </head>
 <body>
   <div class="form">
+    <h1>Metamarkets signature generator</h1>
+    <a class="inst" href="https://docs.google.com/a/metamarkets.com/document/d/1c46HqbrmKMjNTWSVOevJuV8iXA4BkO6P5w8kRCqcYrk">See here for instruction</a>
+    <div class="warning">
+      <strong>This process is only tested to work in Chrome.</strong> If you’re using another browser, it may appear to work, but it’s likely that your signature won’t render properly when it reaches your recipients. The reasons why are boring, but trust us.
+    </div>
     <table>
       <tr>
         <td><label for="name">Name</label></td>

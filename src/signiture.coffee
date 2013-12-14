@@ -13,11 +13,13 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
   height = 52
   logoSpacer = 6
   lineHeight = 13
-  fieldTagWidth = 13
   spacerWidth = 3
   spacerExtra = 5
 
   mmx = 'METAMARKETS'
+
+  field1TagWidth = mesureWidth(field1Label, 'font-size:11px; font-weight:bold; font-family:Helvetica,Arial,Sans-Serif') + 5
+  field2TagWidth = mesureWidth(field2Label, 'font-size:11px; font-weight:bold; font-family:Helvetica,Arial,Sans-Serif') + 5
 
   nameWidth = mesureWidth(name,         'font-size:11px; font-weight:bold;   font-family:Helvetica,Arial,Sans-Serif') + 5
   positionWidth = mesureWidth(position, 'font-size:11px; font-weight:normal; font-family:Helvetica,Arial,Sans-Serif')
@@ -30,7 +32,7 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
 
   line1Width = nameWidth
   line2Width = positionWidth + spacerExtra + spacerWidth + spacerExtra + metamarketsWidth
-  line3Width = fieldTagWidth + field1Width + spacerExtra + (if hasField2 then spacerWidth + spacerExtra + fieldTagWidth + field2Width else 0)
+  line3Width = field1TagWidth + field1Width + spacerExtra + (if hasField2 then spacerWidth + spacerExtra + field2TagWidth + field2Width else 0)
   line4Width = emailWidth
 
   infoWidth = Math.max(line1Width, line2Width, line3Width, line4Width)
@@ -119,8 +121,8 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
               style: 'font-size:11px;font-family:Helvetica,Arial,Sans-Serif;white-space:nowrap'
               html:
                 td({
-                  width: fieldTagWidth
-                  html: field1Label
+                  width: field1TagWidth
+                  html: field1Label + '&nbsp;'
                   style: 'color:#666666;font-weight:bold;'
                 }) +
                 td({
@@ -130,8 +132,8 @@ signiture = ({name, position, field1Label, field1, field2Label, field2, email}) 
                 (if hasField2
                   tdSpecer +
                   td({
-                    width: fieldTagWidth
-                    html: field2Label
+                    width: field2TagWidth
+                    html: field2Label + '&nbsp;'
                     style: 'color:#666666;font-weight:bold;'
                   }) +
                   td({
